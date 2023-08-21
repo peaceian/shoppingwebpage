@@ -1,2 +1,2 @@
 # shopwebpage
-This project is a shop webpage by using the Bootstrap and CSS layout.
+This project is a shop webpage using the Bootstrap and CSS layout.
