@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap商品網頁練習</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <style>
+        /*header固定範圍設定*/
+        body {
+            background-color: whitesmoke;
+        }
+
+        header {
+            position: relative;
+            background-color: black;
+            height: 80vh;
+            /*畫面的百分比*/
+            min-height: 25rem;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        /*超過畫面隱藏*/
+        /*video完全對照header的大小*/
+        header video {
+            position: absolute;
+            /*絕對位置以相對位置為根據距離調整*/
+            /*top: 80%;/*影片從上往下移動%*/
+            /*left: 50%;/*中間*/
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            /*transform: translateX(-50%) translateY(-50%);*/
+        }
+
+        /*transform:translate必要，將影片移到畫面中央*/
+        /*經測試，除了絕對位置absolute，top,left,transform都可以不用*/
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /*作用是將文字疊到影片上*/
+        /*header .overlay {position: absolute;
+                         top:0;
+                         left: 0;
+                         height:100%;
+                         width: 100%;
+                         opacity: 0.5;
+                         z-index: 0;
+                         }影片透明化效果，基本不用*/
+        /*圖標，依照根元素大小變化，圓形，位置依照畫面比例調整*/
+        .carousel-caption img {
+            width: 10rem;
+            border-radius: 5rem;
+            margin-top: 1.5rem;
+        }
+
+        /*媒體查詢，小於767px圖標會變小*/
+        @media (max-width:767px) {
+            .carousel-caption img {
+                width: 4rem;
+                border-radius: 4rem;
+                margin-top: 0.5rem;
+            }
+        }
+
+        /*媒體查詢，觸控類等無pointer裝置將會切換成靜態背景*/
+        @media (pointer:coarse) and (hover:none) {
+            header {
+                background: url()black no-repeat center center scroll;
+                height: 40vh;
+            }
+
+            header video {
+                display: none;
+            }
+        }
+
+        .carousel-control-prev {
+            left: -10%;
+        }
+
+        .carousel-control-next {
+            right: -10%;
+        }
+
+        .figure-img {
+            height: 350px;
+            object-fit: cover;
+        }
+
+        /*.carousel-control-prev-icon  {
+	        margin-left: -50px;}
+        .carousel-control-next-icon  {
+	        margin-right: -50px;}*/
+    </style>
+</head>
+
+<body>
+    <!--.toast-->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3"><!--toast-container必須，position-fixed固定出現的位置，top,bottom,start,end設定出現位置-->
+        <!-- Then put toasts within -->
+        <div class="toast show" role="alert" aria-live="polite" aria-atomic="true">
+            <div class="toast-header bg-danger text-light"><!--messege title, could set bg and text-->
+                <!--<img src="..." class="rounded me-2" alt="...">-->
+                <i class="bi bi-bell"></i>
+                <strong class="me-auto">優惠訊息</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                選購優惠通知，<a href="#" target="_blank">詳情請見</a>
+            </div>
+        </div>
+
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <!--<img src="..." class="rounded me-2" alt="...">-->
+                <i class="bi bi-bell-fill"></i>
+                <strong class="me-auto">搶先預購</strong>
+                <small class="text-muted">2 seconds ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                新品上市，搶先預購，享85折優惠，<a href="#">詳情請見</a>
+            </div>
+        </div>
+    </div>
+
+    <!--頁首-->
+    <header>
+        <!--<div class="overlay"></div>--><!--自訂，非bs內建，可以不用-->
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="production_id_4318381 (1080p).mp4" type="video/mp4">
+        </video>
+        <div class="container h-100"><!--設置一個container讓內容一起移動-->
+            <div class="d-flex h-50 text-center align-items-center"><!--align-items-center不能選成align-content-center-->
+                <div class="w-100 text-white">
+                    <h1 class="display-3">TommorowLand</h1>
+                    <div class="carousel-caption">
+                        <img src="https://picsum.photos/id/203/250/250">
+                        <p class="lead lh-lg">Hi, this is TommorowLand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col text-center">
+                <h2 class="display-6 text-danger">最高品質的選擇</h2>
+                <p class="fs-4">提供最棒的商品及服務</p>
+            </div>
+            <!--購物單-->
+            <div id="myCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+                <!--carousel 項目-->
+                <div class="carousel-inner"><!--父容器-->
+                    <!--第一面-->
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <div class="row row-cols-1 row-cols-md-3">
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選配件</div>
+                                    <img src="g-c-winter-ponytail-hat-messy-bun-beanie-warm-knitted-hats.jpg"
+                                        class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Winter-Ponytail-Hat</h4>
+                                        <p class="item-price"><s>$980</s><b>$600</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選配件</div>
+                                    <img src="sunglasses.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Ray-Bam-Sunglasses</h4>
+                                        <p class="item-price"><s>$3499</s><b>$2999</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選配件</div>
+                                    <img src="Suit-woman.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Office-Suit</h4>
+                                        <p class="item-price"><s>$3200</s><b>$2900</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--第二面-->
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="row row-cols-1 row-cols-md-3">
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選服裝</div>
+                                    <img src="Dress.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">One-Piece Dress</h4>
+                                        <p class="item-price"><s>$1980</s><b>$1600</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選服裝</div>
+                                    <img src="pants-woman.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Blue Color Pants (Broken)</h4>
+                                        <p class="item-price"><s>$1499</s><b>$999</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選服裝</div>
+                                    <img src="pants-woman2.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Sky Blue Color Pants</h4>
+                                        <p class="item-price"><s>$1200</s><b>$1000</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--第三面-->
+                    <div class="carousel-item" data-bs-interval="10000">
+                        <div class="row row-cols-1 row-cols-md-3">
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選系列</div>
+                                    <img src="Bag1.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Bag Series 1</h4>
+                                        <p class="item-price"><s>$1999</s><b>$1600</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選系列</div>
+                                    <img src="Bag2.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Bag Series 2</h4>
+                                        <p class="item-price"><s>$2499</s><b>$1999</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-center">
+                                    <div class="card-header">精選系列</div>
+                                    <img src="Bag3.jpg" class="figure-img">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Bag Series 3</h4>
+                                        <p class="item-price"><s>$2500</s><b>$2199</b></p>
+                                        <button type="button" class="btn btn-danger">Add to Cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Carousel Controls-->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!--Alert-->
+        <div class="row mt-5">
+            <div class="col text-center text-danger">
+                <h1>新商品搶先預購</h1>
+                <p>我們提供最新的商品，早預購即享優惠!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">全新商品!</h4>
+                    <p>夏天赤日炎炎，在這氣候炎熱，一改新春綠意，換上輕鬆涼快的連身裙，挑戰今夏最亮眼的妳!<br>全新女版連身裙One piece夏日首推!預購再享85折!</p>
+                    <hr>
+                    <p class="mb-0">心動了嗎?<a href="#" class="alert-link">馬上預購</a></p>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="alert alert-warning" role="alert">
+                    <h4 class="alert-heading">全新商品</h4>
+                    <p>全新登場偏光太陽眼鏡，鏡框鏡片採用金屬色製成，偏光鏡片確保眼睛能不受陽光傷害，個性化的風格外型，成為夏日的視覺焦點!<br>全新偏光太陽眼鏡!打造自我個性也不傷害眼睛!預購再享85折!</p>
+                    <hr>
+                    <p class="mb-0">心動了嗎?<a href="#" class="alert-link">馬上預購</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-primary" role="alert">
+            或許您有興趣 <a href="#" class="alert-link">帽子系列</a>。
+        </div>
+        <div class="alert alert-secondary" role="alert">
+            或許您有興趣 <a href="#" class="alert-link">手環系列</a>。
+        </div>
+        <div class="alert alert-success" role="alert">
+            或許您有興趣 <a href="#" class="alert-link">戒指系列</a>。
+        </div>
+    </div>
+    <div class="container-fluid"><!--fluid，全寬度，每個breakpoint都是全版-->
+        <footer class="row bg-primary text-center mt-5 p-5">
+            <p class="col text-light">Copyrights &copy; 2023 All Rights Reserved by IAN</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
